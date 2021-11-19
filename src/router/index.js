@@ -4,6 +4,8 @@ import VueRouter from 'vue-router'
 //引入组件
 import Login from '../components/Login.vue'
 import Home from '../components/Home.vue'
+import Welcome from '../components/Welcome.vue'
+import Users from '../components/user/Users.vue'
 
 //创建并暴露一个路由器
 const router = new VueRouter({
@@ -13,13 +15,24 @@ const router = new VueRouter({
             redirect: '/login'
         },
         {
-            path: '/Home',
-            component: Home
-        },
-        {
             path: '/login',
             component: Login
         },
+        {
+            path: '/home',
+            component: Home,
+            redirect: '/welcome',
+            children: [{
+                path: '/welcome',
+                component: Welcome,
+            },
+            {
+                path: '/users',
+                component: Users,
+            },
+            ]
+        },
+
 
 
     ]
